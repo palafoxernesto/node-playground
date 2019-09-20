@@ -1,6 +1,7 @@
 const http = require('http')
 const server = http.createServer()
 
+// Objeto Map que contiene los nombres de la semana llave - valor
 var days = new Map([
   [0, 'Sunday'],
   [1, 'Monday'],
@@ -11,9 +12,15 @@ var days = new Map([
   [6, 'Saturday']
 ])
 
+/*
+* Regresa el día de la semana en que naciste dada tu fecha de nacimiento
+* @param {number} - año
+* @param {number} - mes
+* @param {number} - día
+* @returns {string} Nombre del día de la semana
+*/
 function getDayOfBirth (year, month, day) {
   const birthDate = new Date(year, month, day)
-  console.log(birthDate)
   const birthDay = birthDate.getDay()
   const birthDayName = days.get(birthDay)
   return birthDayName
@@ -28,9 +35,13 @@ server.on('request', (req, res) => {
     })
       .on('end', () => {
         res.writeHead(200, { 'Content-Type': 'text/plain' })
-        const [year, month, day] = Buffer.concat(body).toString().split(/\W/)
-        console.log(year, month, day)
-        res.end(getDayOfBirth(year, month - 1, day))
+        // array destructuring
+        const [year, month, day] = Buffer.concat(body).toString().split(/\W/) // expresión regular para capturar |-/ etc
+        res.end(
+          getDayOfBirth(
+            year,
+            month - 1, // el mes comienza en 0
+            day))
       })
   } else {
     res.statusCode = 404
