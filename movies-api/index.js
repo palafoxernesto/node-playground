@@ -6,8 +6,11 @@ const { moviesApi } = require('./routes/movies')
 
 const {
   logErrors,
+  wrapErrors,
   errorHandler
 } = require('./utils/middleware/errorHandlers')
+
+const notFoundHandler = require('./utils/middleware/notFoundHandler')
 
 // body parser
 app.use(express.json())
@@ -15,8 +18,12 @@ app.use(express.json())
 // routes
 moviesApi(app)
 
-// error handler
+// Catch 404
+app.use(notFoundHandler)
+
+// Error middleware handeñers
 app.use(logErrors)
+app.use(wrapErrors)
 app.use(errorHandler)
 
 /*
