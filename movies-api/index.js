@@ -4,6 +4,7 @@ const app = express()
 const { config: { port } } = require('./config/index')
 const { moviesApi } = require('./routes/movies')
 
+app.use(express.json())
 /*
 app.get('/', function (req, res) {
   res.send('hello world')

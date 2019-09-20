@@ -1,15 +1,15 @@
 const express = require('express')
-const MovieService = require('../services/movies')
+const MoviesService = require('../services/movies')
 
 function moviesApi (app) {
   const router = express.Router()
   app.use('/api/movies', router)
 
-  const moviesService = new MovieService()
+  const moviesService = new MoviesService()
   router.get('/', async function (req, res, next) {
     const { tags } = req.query
     try {
-      const movies = await moviesService.getMovie({ tags })
+      const movies = await moviesService.getMovies({ tags })
       res.status(200).json({
         data: movies,
         message: 'movies listed'
@@ -64,7 +64,7 @@ function moviesApi (app) {
   router.delete('/:movieId', async function (req, res, next) {
     const { movieId } = req.params
     try {
-      const deletedMovie = await moviesService.updateMovie({ movieId })
+      const deletedMovie = await moviesService.deleteMovie({ movieId })
       res.status(200).json({
         data: deletedMovie,
         message: 'movie deleted'
