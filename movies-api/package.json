@@ -18,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/boom": "^7.4.7",
+    "@hapi/joi": "^16.1.2",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "mongodb": "^3.3.2"
