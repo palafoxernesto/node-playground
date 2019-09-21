@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const debug = require('debug')('app:server')
 
 const { config: { port } } = require('./config/index')
 const { moviesApi } = require('./routes/movies')
@@ -43,5 +44,5 @@ app.get('/year/:year', function (req, res) {
 */
 
 app.listen(port, function () {
-  console.log(`Listening http://localhost:${port}`)
+  debug(`Listening http://localhost:${port}`)
 })
