@@ -1,14 +1,12 @@
-const fs = require('fs')
+const fs = require("fs")
 
-const file = process.argv[2]
+try {
+  const file = process.argv[2]
 
-if (!file) {
-  throw new Error('Debes indicar el archivo que quieres leer')
-}
-fs.readFile(file, (err, content) => {
-  if (err) {
-    return console.log(err)
-  }
-  const lines = content.toString().split('\n').length
+  const content = fs.readFileSync(file).toString()
+
+  const lines = content.split("\n").length
   console.log(lines)
-})
+} catch (err) {
+  console.log(err)
+}

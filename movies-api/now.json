@@ -1,0 +1,13 @@
+{
+  "name": "movies-api",
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@now/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
+  "public": "true",
+  "env": {
+    "DB_USER": "@videos-api-db-user",
+    "DB_PASSWORD": "@videos-api-db-password",
+    "DB_HOST": "@videos-api-db-host",
+    "DB_NAME": "@videos-api-db-name"
+  }
+}
