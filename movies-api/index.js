@@ -3,7 +3,7 @@ const app = express()
 const debug = require('debug')('app:server')
 
 const { config: { port } } = require('./config/index')
-const { moviesApi } = require('./routes/movies')
+const moviesApi = require('./routes/movies')
 
 const {
   logErrors,

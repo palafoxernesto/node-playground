@@ -101,7 +101,7 @@ const moviesMock = [
     year: 2018,
     cover: 'http://dummyimage.com/800x600.png/ff4444/ffffff',
     description:
-      'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.',
+      'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Duis faucibus accumsan odio. Curabitur convallis.',
     duration: 115,
     contentRating: 'R',
     source: 'https://umich.edu/cursus/id/turpis/integer/aliquet.aspx',
@@ -153,6 +153,22 @@ const moviesMock = [
   }
 ]
 
+function filteredMoviesMock(tag) {
+  return moviesMock.filter(movie => movie.tags.includes(tag))
+}
+
+class MoviesServiceMock {
+  async getMovies() {
+    return Promise.resolve(moviesMock)
+  }
+
+  async createMovie() {
+    return Promise.resolve(moviesMock[0])
+  }
+}
+
 module.exports = {
-  moviesMock
+  moviesMock,
+  filteredMoviesMock,
+  MoviesServiceMock
 }
